@@ -113,7 +113,8 @@ public class RobotParser {
 			regex.append(")");
 			sitesRobot.put(root, regex.toString());
 		} catch (Exception ex) {
-			System.out.println("robot.txt doesn't exist for " + root);
+			regex.append(")");
+			sitesRobot.put(root, regex.toString());
 		}
 	}
 }

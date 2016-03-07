@@ -16,19 +16,24 @@ public class UnitTests {
 	@Test
 	public void test() {
 		ConcurrentSkipListSet<String> testUrls = new ConcurrentSkipListSet<String>();
-		testUrls.add("http://www.robotstxt.org/,0");
+		testUrls.add("http://www.pages.drexel.edu/~et354/Fish/Brainstorm.html 0");
 		String words = "";
 		int layer = 3;
 		UrlParser urlParser = new UrlParser(testUrls, layer, words);
 		Pipe p = new Pipe();
 		Output output = new Output();
-		
+		CreateDirectories cd = new CreateDirectories();
 		urlParser.output(p);
+	    cd.input(p);
+		
+	    p = new Pipe();
+	    cd.output(p);
 	    output.input(p);
 		
-		
 		urlParser.run();
-		output.run();
+		cd.run();
+		
+		//output.run();
 	}
 	
 	@Test

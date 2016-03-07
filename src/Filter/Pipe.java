@@ -35,6 +35,27 @@ public class Pipe {
 		}
 	}
 
+	public String readLast() throws Exception {
+		while (true) {
+
+			if (data.isEmpty()) {
+				if(close)
+				{
+					throw new Exception();
+				}
+				try {
+					
+					Thread.sleep(20);
+				} catch (Exception ex) {
+					System.err.println("Error found in pipe \n" + ex.toString());
+				}
+			}
+			else{
+				return data.pollLast();
+			}
+		}
+	}
+	
 	public void write(String line) {
 		if (close) {
 			return;

@@ -28,13 +28,25 @@ public class UrlParser extends Filter {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		System.out.println(Thread.currentThread().getName() + " started");
 		while (true) {
 
+			try {
+				Pause();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				System.err.println("Error Pausing");
+			}
+			if(stop)
+			{
+				System.out.println(Thread.currentThread().getName() + " Stopped");
+				break;
+			}
 			String data;
 			String[] url;
 			try {
 				data = URLS.pollFirst().toString();
-				url = data.split(",");
+				url = data.split(" ");
 			} catch (Exception e) {
 				write(null);
 				System.out.println("UrlParser Filter closed");
@@ -56,7 +68,7 @@ public class UrlParser extends Filter {
 								int newLayer = currLayer + 1;
 								String childUrl = link.attr("abs:href").toString();
 								if (wordFind(childUrl)) {
-									URLS.add(link.attr("abs:href") + "," + newLayer);
+									URLS.add(link.attr("abs:href") + " " + newLayer + " " + url[0] +"-"+ currLayer);
 								}
 							}
 						}
@@ -67,7 +79,7 @@ public class UrlParser extends Filter {
 					}
 				}
 			} catch (Exception e) {
-				System.err.println("UrlParser.run - Error parsing to int");
+				System.err.println("UrlParser.run - Error parsing to int " + data);
 			}
 		}
 
