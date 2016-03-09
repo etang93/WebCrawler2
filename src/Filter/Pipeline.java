@@ -66,6 +66,7 @@ public class Pipeline implements Runnable {
 	}
 
 	public void Stop() {
+		
 		System.out.println("Stopping Threads..");
 		for (Thread th : threads) {
 			for(Filter filter : filters)

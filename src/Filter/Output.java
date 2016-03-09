@@ -42,9 +42,9 @@ public class Output extends Filter {
 			Document htmlPage = Jsoup.connect(url).get();
 			Elements body = htmlPage.select("body");
 
-			String bodyText = body.tagName("body").text();
+			//String bodyText = body.tagName("body").text();
 
-			return bodyText;
+			return body.toString();
 
 		} catch (Exception ex) {
 			return "";

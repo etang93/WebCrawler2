@@ -83,12 +83,23 @@ public class Menu extends Thread {
 				pipeLine.Pause();
 
 			} catch (Exception ex) {
+				System.out.println("Start first, program will error out now restart");
 			}
 		} else if (choice == 3) {
+			try{
 			pipeLine.Resume();
-		} else if (choice == 4) {
-			pipeLine.Stop();
+		
+			}catch(Exception ex)
+			{
+				System.out.println("start first, program will error out now restart");
+			}
+		}else if (choice == 4) {
+			try{pipeLine.Stop();
 			stop = true;
+			}catch(Exception ex)
+			{
+				System.out.println("start first, program will error out now restart");
+			}
 		}
 		// http://www.pages.drexel.edu/~et354/Fish/Brainstorm.html
 	}
